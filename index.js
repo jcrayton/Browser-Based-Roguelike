@@ -57,6 +57,7 @@ function move (coords) {
   var toCell = getCell(coords)
   currentCell.innerHTML = ''
   toCell.innerHTML = '@'
+  playerCoords = coords
 }
 
 function getCell (coords) {
