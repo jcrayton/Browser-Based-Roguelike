@@ -10,7 +10,7 @@ function run () {
   var startCell = getCell(playerCoords)
   startCell.innerHTML = '@'
 
-  window.addEventListener('keypress', function (e) {
+  document.addEventListener('keypress', function (e) {
     console.log(e.key)
     // get key, or keyCode if key is null
     var key = e.key || e.keyCode
