@@ -1,3 +1,9 @@
+function run () {
+  createGrid(20, 40, null);
+  var someCell = document.getElementById('cell10x20');
+  someCell.innerHTML = '@';
+}
+
 function createGrid (rows, cols, callback) {
   var grid = document.getElementById('grid');
   for (var r = 0; r < rows; ++r) {
