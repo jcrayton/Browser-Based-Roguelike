@@ -1,6 +1,5 @@
 var COLS = 40
 var ROWS = 20
-var Pressed = false;
 
 function run () {
   createGrid(ROWS, COLS, null)
