@@ -17,6 +17,9 @@ function run () {
     wallGen()
   }
 
+  var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
+  audio.play()
+
   document.addEventListener('keydown', function (e) {
     // get key, or keyCode if key is null
     var key = e.key || e.keyCode
