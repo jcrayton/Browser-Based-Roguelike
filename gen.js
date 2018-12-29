@@ -1,6 +1,13 @@
 function wallGen(x, y) {
   if (x == undefined) {
-    setCell({x: getRandomInt(COLS), y: getRandomInt(ROWS)}, chars.wall)
+    var test = false
+    while (test == false) {
+      var i = {x: getRandomInt(COLS), y: getRandomInt(ROWS)}
+      if (getCellContent(i) == "") {
+        setCell(i, chars.wall)
+        test = true
+      }
+    }
   }
   else {
     setCell({x: x, y: y}, chars.wall)
