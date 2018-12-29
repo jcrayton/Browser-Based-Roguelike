@@ -1,7 +1,6 @@
 var playerCoords = {x: COLS / 2, y: ROWS / 2}
 
 function move (coords) {
-  console.log('move', coords)
   if (coords == null) {
     return
   }

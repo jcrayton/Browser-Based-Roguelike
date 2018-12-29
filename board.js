@@ -13,6 +13,11 @@ function createGrid (rows, cols, callback) {
   }
 }
 
+function setCell (coords, char) {
+  var cell = getCell(coords)
+  cell.innerHTML = char
+}
+
 function getCell (coords) {
   return document.getElementById('cell' + coords.y + 'x' + coords.x)
 }
