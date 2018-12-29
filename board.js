@@ -22,6 +22,10 @@ function getCell (coords) {
   return document.getElementById('cell' + coords.y + 'x' + coords.x)
 }
 
+function getCellContent (coords) {
+  return getCell(coords).innerHTML
+}
+
 function getAboveCoords () {
   if (playerCoords.y === 0) {
     return null
