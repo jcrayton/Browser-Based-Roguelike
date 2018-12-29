@@ -1,5 +1,6 @@
 var COLS = 40
 var ROWS = 20
+var Pressed = false;
 
 var playerCoords = {x: COLS / 2, y: ROWS / 2}
 
@@ -9,24 +10,23 @@ function run () {
   var startCell = getCell(playerCoords)
   startCell.innerHTML = '@'
 
-  window.addEventListener('keypress', function (e) {
-    console.log('keypress')
+  document.addEventListener('keypress', function (e) {
+    console.log(e.key)
     // get key, or keyCode if key is null
     var key = e.key || e.keyCode
-
     // TODO I'm not actually sure what the values for key should be - I think
     // they might be strings and not numbers.
     switch (key) {
-      case keyCodes.left:
+      case "ArrowLeft":
         move(getLeftCoords())
         break
-      case keyCodes.up:
+      case "ArrowUp":
         move(getAboveCoords())
         break
-      case keyCodes.right:
+      case "ArrowRight":
         move(getRightCoords())
         break
-      case keyCodes.down:
+      case "ArrowDown":
         move(getBelowCoords())
         break
     }
