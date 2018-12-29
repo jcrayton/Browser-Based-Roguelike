@@ -1,4 +1,4 @@
-function createGrid (rows, cols, callback) {
+function createGrid (rows, cols) {
   var grid = document.getElementById('grid')
   for (var r = 0; r < rows; ++r) {
     var row = grid.appendChild(document.createElement('tr'))
@@ -8,7 +8,6 @@ function createGrid (rows, cols, callback) {
       var cell = row.appendChild(document.createElement('td'))
       cell.id = 'cell' + r + 'x' + c
       cell.classList.add('cell')
-      cell.addEventListener('click', callback)
     }
   }
 }
