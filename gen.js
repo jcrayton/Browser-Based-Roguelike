@@ -1,5 +1,5 @@
 function randWallGen() {
-  setCell({x: getRandomInt(ROWS), y: getRandomInt(COLS)}, chars.wall)
+  setCell({x: getRandomInt(COLS), y: getRandomInt(ROWS)}, chars.wall)
 }
 
 function getRandomInt(max) {
