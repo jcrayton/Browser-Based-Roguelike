@@ -1,7 +1,17 @@
 function wallGen(x, y) {
+  // random wall generation
   if (x == undefined) {
-    setCell({x: getRandomInt(COLS), y: getRandomInt(ROWS)}, chars.wall)
+    var done = false
+    while (!done) {
+      var x = getRandomInt(COLS)
+      var y = getRandomInt(ROWS)
+      if (getCellContent({x: x, y: y}) == '') {
+        done = true
+        setCell({x: x, y: y}, chars.wall)
+      }
+    }
   }
+  // wall generation at set coords
   else {
     setCell({x: x, y: y}, chars.wall)
   }
