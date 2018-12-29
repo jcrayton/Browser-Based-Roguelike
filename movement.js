@@ -4,7 +4,7 @@ function move (coords) {
   if (coords == null) {
     return
   }
-  if (getCellContent(coords) != "") {
+  else if (getCellContent(coords) != "") {
     return
   }
   console.log(getCellContent(coords))
