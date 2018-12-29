@@ -1,10 +1,9 @@
-var playerCoords = {x: COLS / 2, y: ROWS / 2}
-
 function move (coords) {
+  var char = getCellContent(coords)
   if (coords == null) {
     return
   }
-  if (getCellContent(coords) != "") {
+  else if (types.immovable.includes(char)) {
     return
   }
   console.log(getCellContent(coords))
@@ -12,6 +11,6 @@ function move (coords) {
   var toCell = getCell(coords)
 
   currentCell.innerHTML = ''
-  toCell.innerHTML = '@'
+  toCell.innerHTML = chars.player
   playerCoords = coords
 }
