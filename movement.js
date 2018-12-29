@@ -1,13 +1,9 @@
-var playerCoords = {x: COLS / 2, y: ROWS / 2}
-
-function move (coords) {
+function move (coords, d) {
   var content = getCellContent(coords)
-  console.log(content)
   if (coords == null) {
     return
   }
   else if (content == "") {
-    console.log(getCellContent(coords))
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
@@ -22,6 +18,11 @@ function move (coords) {
     return
   }
   else if (types.movable.includes(content) == true) {
+    //need to switch to the target object
+    //then get direction and check that it can also move
+    //then move first the obj then the character
+
+
     return
   }
 }

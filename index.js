@@ -27,16 +27,16 @@ function run () {
     var key = e.key || e.keyCode
     switch (key) {
       case "ArrowLeft":
-        move(getLeftCoords())
+        move(getLeftCoords(), "l")
         break
       case "ArrowUp":
-        move(getAboveCoords())
+        move(getAboveCoords(), "u")
         break
       case "ArrowRight":
-        move(getRightCoords())
+        move(getRightCoords(), "r")
         break
       case "ArrowDown":
-        move(getBelowCoords())
+        move(getBelowCoords(), "d")
         break
     }
   })
