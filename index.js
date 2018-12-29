@@ -3,7 +3,7 @@ var ROWS = 20
 
 function run () {
   createGrid(ROWS, COLS, null)
-  setCell(playerCoords, '@')
+  setCell(playerCoords, chars.player)
   setCell({x: 3, y: 3}, chars.wall)
   setCell({x: 3, y: 4}, chars.wall)
   setCell({x: 3, y: 5}, chars.wall)
