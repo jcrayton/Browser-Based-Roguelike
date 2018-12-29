@@ -12,7 +12,7 @@ function run () {
   setCell({x: 5, y: 5}, chars.wall)
   setCell({x: 5, y: 4}, chars.wall)
   setCell({x: 5, y: 3}, chars.wall)
-  // randWallGen();
+  randWallGen();
 
   document.addEventListener('keydown', function (e) {
     // get key, or keyCode if key is null
