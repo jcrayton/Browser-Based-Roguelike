@@ -13,9 +13,11 @@ function run () {
   wallGen(5,4)
   wallGen(5,3)
 
-  for (let i = 0; i < 100; i++) {
-    wallGen()
-  }
+  // for (let i = 0; i < 100; i++) {
+  //   wallGen()
+  // }
+
+  wallGen(8, 7, "w", 5)
 
   var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
   audio.play()
