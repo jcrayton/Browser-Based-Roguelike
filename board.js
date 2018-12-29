@@ -52,3 +52,7 @@ function getRightCoords () {
   }
   return {x: playerCoords.x + 1, y: playerCoords.y}
 }
+
+function boardSwap() {
+  return
+}

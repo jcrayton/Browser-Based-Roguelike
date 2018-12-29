@@ -1,15 +1,17 @@
 function move (coords, d) {
-  var content = getCellContent(coords)
   if (coords == null) {
+    boardSwap()
     return
   }
-  else if (content == "") {
+  var content = getCellContent(coords)
+  if (content == "") {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
     currentCell.innerHTML = ''
     toCell.innerHTML = chars.player
     playerCoords = coords
+
   }
   else if (types.immovable.includes(content) == true) {
     return
