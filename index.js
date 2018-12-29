@@ -13,7 +13,9 @@ function run () {
   wallGen(5,4)
   wallGen(5,3)
 
-  wallGen()
+  for (let i = 0; i < 100; i++) {
+    wallGen()
+  }
 
   document.addEventListener('keydown', function (e) {
     // get key, or keyCode if key is null
