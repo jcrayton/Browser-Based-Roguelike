@@ -14,8 +14,6 @@ function run () {
     console.log(e.key)
     // get key, or keyCode if key is null
     var key = e.key || e.keyCode
-    // TODO I'm not actually sure what the values for key should be - I think
-    // they might be strings and not numbers.
     switch (key) {
       case "ArrowLeft":
         move(getLeftCoords())
@@ -90,11 +88,4 @@ function getRightCoords () {
     return null
   }
   return {x: playerCoords.x + 1, y: playerCoords.y}
-}
-
-var keyCodes = {
-  left: '37',
-  up: '38',
-  right: '39',
-  down: '40'
 }
