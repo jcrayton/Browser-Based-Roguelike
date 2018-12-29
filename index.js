@@ -1,11 +1,16 @@
 var COLS = 40
 var ROWS = 20
-var Pressed = false;
 
 function run () {
   createGrid(ROWS, COLS, null)
   setCell(playerCoords, '@')
   setCell({x: 3, y: 3}, chars.wall)
+  setCell({x: 3, y: 4}, chars.wall)
+  setCell({x: 3, y: 5}, chars.wall)
+  setCell({x: 4, y: 5}, chars.wall)
+  setCell({x: 5, y: 5}, chars.wall)
+  setCell({x: 5, y: 4}, chars.wall)
+  setCell({x: 5, y: 3}, chars.wall)
 
   document.addEventListener('keydown', function (e) {
     // get key, or keyCode if key is null
