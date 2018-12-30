@@ -29,7 +29,7 @@ function move (coords, d) {
     var y = coords.y
     switch (d) {
       case "u":
-        localTar = {x: x, y:y-1
+        localTar = {x: x, y:y-1}
         break
       case "d":
         localTar = {x: x, y:y+1}
