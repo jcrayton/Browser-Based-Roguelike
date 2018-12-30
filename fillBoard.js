@@ -9,10 +9,10 @@ function populate() {
   // wallGen(5,3)
 
 
-  setCell({x: 5, y: 9}, chars.boulder)
+  objGen(chars.boulder)
 
   for (let i = 0; i < 20; i++) {
-    wallGen()
+    objGen(chars.wall)
   }
 
   // wallGen(8, 7, "w", 5)

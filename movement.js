@@ -47,7 +47,6 @@ function move (coords, d) {
         var toLocal = getCell(localTar)
         content = getCellContent(localObj)
 
-        console.log(content)
         currentLocal.innerHTML = ''
         toLocal.innerHTML = content
 
