@@ -112,8 +112,48 @@ function saveBoard() {
       // console.log(savedGrid[c][r])
     }
   }
-  mapVals[mapPos.x][mapPos.y] = savedGrid
+  if (Array.isArray(mapVals[mapPos.x]) == true) {
+    mapVals[mapPos.x][mapPos.y] = savedGrid
+  }
+  else {
+    mapVals[mapPos.x] = []
+    mapVals[mapPos.x][mapPos.y] = savedGrid
+  }
+  console.log(mapPos.x, mapPos.y)
 }
+
+// function saveBoard() {
+//   setCell(playerCoords, "")
+//   console.log("within save")
+//   var savedGrid = []
+//   for (var r = 0; r < ROWS; ++r) {
+//     savedGrid.push([])
+//     for (var c = 0; c < COLS; ++c) {
+//       var cell = getCell({x: c, y: r})
+//       // console.log(c, r)
+//       savedGrid[r].push(cell.innerHTML)
+//       // console.log(savedGrid[c][r])
+//     }
+//   }
+//   if (mapPos.x >= 0) {
+//     if (mapPos.y >= 0) {
+//       mapVals[mapPos.x][mapPos.y] = savedGrid
+//     }
+//     else {
+//       mapVals1[mapPos.x][mapPos.y*(-1)] = savedGrid
+//     }
+//   }
+//   else {
+//     if (mapPos.y >= 0) {
+//       mapVals3[mapPos.x][mapPos.y] = savedGrid
+//     }
+//     else {
+//       mapVals2[mapPos.x][mapPos.y*(-1)] = savedGrid
+//     }
+//   }
+//   mapVals[mapPos.x][mapPos.y] = savedGrid
+//   console.log(mapPos.x, mapPos.y)
+// }
 
 function clearBoard(d) {
   for (var r = 0; r < ROWS; ++r) {
