@@ -12,6 +12,19 @@ function createGrid (rows, cols) {
   }
 }
 
+function getEmptyCoords () {
+  var emptyCells = []
+  for (var row = 0; row < ROWS; row++) {
+    for (var col = 0; col < COLS; col++) {
+      var coords = {x: col, y: row}
+      if (getCellContent(coords) === '') {
+        emptyCells.add(coords)
+      }
+    }
+  }
+  return emptyCells
+}
+
 function setCell (coords, char) {
   var cell = getCell(coords)
   cell.innerHTML = char

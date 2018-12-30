@@ -17,6 +17,7 @@ function run () {
     wallGen()
   }
 
+  // TODO doesn't work on Chrome
   var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
   audio.play()
 
