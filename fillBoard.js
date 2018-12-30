@@ -10,8 +10,10 @@ function populate() {
 
 
   objGen(chars.boulder)
+  objGen(chars.sword)
 
-  for (let i = 0; i < 20; i++) {
+
+  for (let i = 0; i < 10; i++) {
     objGen(chars.wall)
   }
 

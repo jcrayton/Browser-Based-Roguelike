@@ -61,4 +61,22 @@ function move (coords, d) {
 
     return
   }
+  else if (types.item.includes(content) == true) {
+    // superMap.push(content)
+    if (itemPos == 10) {
+      return
+    }
+    var slot = (document.getElementById('slot' + itemPos))
+    itemPos++
+    console.log(slot.innerHTML)
+    slot.innerHTML = content
+    console.log(slot.innerHTML)
+
+    var currentCell = getCell(playerCoords)
+    var toCell = getCell(coords)
+
+    currentCell.innerHTML = ''
+    toCell.innerHTML = chars.player
+    playerCoords = coords
+  }
 }

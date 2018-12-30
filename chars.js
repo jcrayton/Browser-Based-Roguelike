@@ -13,5 +13,5 @@ var types = {
   immovable: [chars.wall, chars.hole],
   creature: [chars.player, chars.fox],
   movable: [chars.boulder, chars.chest],
-  items: [chars.gold, chars.sword]
+  item: [chars.gold, chars.sword]
 }
