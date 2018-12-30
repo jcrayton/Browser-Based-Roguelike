@@ -1,5 +1,5 @@
 function createGrid (rows, cols) {
-  var grid = document.getElementById('grid')
+  grid = document.getElementById('grid')
   for (var r = 0; r < rows; ++r) {
     var row = grid.appendChild(document.createElement('tr'))
     row.classList.add('row')
@@ -54,5 +54,8 @@ function getRightCoords () {
 }
 
 function boardSwap() {
+  //will need to deal with 1) the map and 2) the player
+  console.log(grid)
+  superMap.push(grid)
   return
 }

@@ -16,14 +16,64 @@ function move (coords, d) {
   else if (types.immovable.includes(content) == true) {
     return
   }
-  else if (types.creatures.includes(content) == true) {
+  else if (types.creature.includes(content) == true) {
     return
   }
   else if (types.movable.includes(content) == true) {
     //need to switch to the target object
     //then get direction and check that it can also move
     //then move first the obj then the character
+    var localObj = coords
+    var localTar
+    var x = coords.x
+    var y = coords.y
+    switch (d) {
+      case "u":
+        localTar = {x: x, y:y-1}
+        // localTar.x = coords.x
+        // localTar.y = coords.y - 1
+        console.log("going up")
+        break
+      case "d":
+        localTar = {x: x, y:y+1}
+        // localTar.x = coords.x
+        // localTar.y = coords.y + 1
+        console.log("going down")
+        break
+      case "l":
+        localTar = {x: x-1, y: y}
+        // localTar.x = coords.x - 1
+        // localTar.y = coords.y
+        console.log("going left")
+        break
+      case "r":
+        localTar = {x: x+1, y:y}
+        // localTar.x = coords.x + 1
+        // localTar.y = coords.y
+        console.log("going right")
+        break
+      }
+      console.log(localObj)
+      console.log(localTar)
+      content = getCellContent(localTar)
+      if (content == "") {
+        var currentLocal = getCell(localObj)
+        var toLocal = getCell(localTar)
+        content = getCellContent(localObj)
 
+        console.log(content)
+        currentLocal.innerHTML = ''
+        toLocal.innerHTML = content
+
+
+        //do we want this bit?
+        var currentCell = getCell(playerCoords)
+        var toCell = getCell(coords)
+
+        currentCell.innerHTML = ''
+        toCell.innerHTML = chars.player
+        playerCoords = coords
+      }
 
     return
   }

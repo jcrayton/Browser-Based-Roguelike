@@ -8,7 +8,10 @@ function populate() {
   // wallGen(5,4)
   // wallGen(5,3)
 
-  for (let i = 0; i < 100; i++) {
+
+  setCell({x: 5, y: 9}, chars.boulder)
+
+  for (let i = 0; i < 20; i++) {
     wallGen()
   }
 
