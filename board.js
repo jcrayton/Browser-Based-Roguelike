@@ -56,6 +56,5 @@ function getRightCoords () {
 function boardSwap() {
   //will need to deal with 1) the map and 2) the player
   console.log(grid)
-  superMap.push(grid)
   return
 }
