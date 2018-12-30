@@ -66,8 +66,75 @@ function getRightCoords () {
   return {x: playerCoords.x + 1, y: playerCoords.y}
 }
 
-function boardSwap() {
+function boardSwap(d) {
   //will need to deal with 1) the map and 2) the player
-  console.log(grid)
+  saveBoard()
+  clearBoard(d)
+  switch (d) {
+    case "u":
+      mapPos.y--
+      playerCoords.y = ROWS-1
+      break
+    case "d":
+      mapPos.y++
+      playerCoords.y = 0
+      break
+    case "l":
+      mapPos.x--
+      playerCoords.x = COLS-1
+      break
+    case "r":
+      mapPos.x++
+      playerCoords.x = 0
+      break
+  }
+  setCell(playerCoords, chars.player)
+  if (mapVals[mapPos.x][mapPos.y] == undefined) {
+    // populate()
+  }
+  else {
+    refillBoard()
+  }
   return
+}
+
+function saveBoard() {
+  var savedGrid = [[]]
+  for (var r = 0; r < ROWS; ++r) {
+    for (var c = 0; c < COLS; ++c) {
+      var cell = getCell({x: c, y: r})
+      savedGrid[c][r] = cell.innerHTML
+      mapVals[mapPos.x][mapPos.y] = savedGrid
+    }
+  }
+}
+
+function clearBoard(d) {
+  for (var r = 0; r < ROWS; ++r) {
+    for (var c = 0; c < COLS; ++c) {
+      var cell = getCell({x: c, y: r})
+      cell.innerHTML = ""
+    }
+  }
+}
+
+function saveBoard() {
+  var savedGrid = [[]]
+  for (var r = 0; r < ROWS; ++r) {
+    for (var c = 0; c < COLS; ++c) {
+      var cell = getCell({x: c, y: r})
+      savedGrid[r][c] = getCellContent({x: c, y: r})
+      mapVals[mapPos.x][mapPos.y] = savedGrid
+    }
+  }
+}
+
+function refillBoard() {
+  var savedGrid = mapVals[mapPos.x][mapPos.y]
+  for (var r = 0; r < ROWS; ++r) {
+    for (var c = 0; c < COLS; ++c) {
+      var cell = getCell({x: c, y: r})
+      cell.innerHTML = savedGrid[c][r]
+    }
+  }
 }

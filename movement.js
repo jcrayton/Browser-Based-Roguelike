@@ -1,6 +1,6 @@
 function move (coords, d) {
   if (coords == null) {
-    boardSwap()
+    boardSwap(d)
     return
   }
   var content = getCellContent(coords)

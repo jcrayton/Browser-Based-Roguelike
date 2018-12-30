@@ -4,6 +4,9 @@ var playerCoords = {x: COLS / 2, y: ROWS / 2}
 var grid
 var bag
 var itemPos = 0
+var mapPos = {x:0, y:0}
+var mapVals = [[]]
+
 
 function init() {
   createGrid(ROWS, COLS)
