@@ -9,3 +9,12 @@ html {
   font-family: "Lucida Console";
   text-align: center;
 }
+
+.slot {
+  width: 16px;
+  height: 16px;
+  color: white;
+  font-family: "Lucida Console";
+  text-align: center;
+  border-style: dotted;
+}

@@ -1,5 +1,5 @@
 function createGrid (rows, cols) {
-  var grid = document.getElementById('grid')
+  grid = document.getElementById('grid')
   for (var r = 0; r < rows; ++r) {
     var row = grid.appendChild(document.createElement('tr'))
     row.classList.add('row')
@@ -18,7 +18,7 @@ function getEmptyCoords () {
     for (var col = 0; col < COLS; col++) {
       var coords = {x: col, y: row}
       if (getCellContent(coords) === '') {
-        emptyCells.add(coords)
+        emptyCells.push(coords)
       }
     }
   }
@@ -64,4 +64,10 @@ function getRightCoords () {
     return null
   }
   return {x: playerCoords.x + 1, y: playerCoords.y}
+}
+
+function boardSwap() {
+  //will need to deal with 1) the map and 2) the player
+  console.log(grid)
+  return
 }
