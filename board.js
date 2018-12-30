@@ -81,16 +81,23 @@ function boardSwap(d) {
       break
     case "l":
       mapPos.x--
+      if (Array.isArray(mapVals[mapPos.x]) == false) {
+        mapVals[mapPos.x] = []
+      }
+
       playerCoords.x = COLS-1
       break
     case "r":
       mapPos.x++
+      if (Array.isArray(mapVals[mapPos.x]) == false) {
+        mapVals[mapPos.x] = []
+      }
+      
       playerCoords.x = 0
       break
   }
   console.log(mapPos)
-  if (mapVals[mapPos.x][mapPos.y] == undefined) {
-    //need to make sure the last line carries over
+  if (typeof(mapVals[mapPos.x][mapPos.y]) == 'undefined') {
     populate()
   }
   else {

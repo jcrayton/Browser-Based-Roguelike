@@ -36,7 +36,6 @@ function edgeCorrection() {
     for (var c = 0; c < COLS; ++c) {
       var cell = getCell({x: c, y: 0})
       cell.innerHTML = savedGrid[ROWS-1][c]
-      console.log(savedGrid[ROWS-1][c])
     }
   }
   // console.log(mapVals[x][y+1])
@@ -45,28 +44,27 @@ function edgeCorrection() {
     for (var c = 0; c < COLS; ++c) {
       var cell = getCell({x: c, y: ROWS-1})
       cell.innerHTML = savedGrid[0][c]
-      console.log(savedGrid[0][c])
     }
 
   }
-  // console.log(mapVals[x-1][y])
-  // if (typeof(mapVals[x-1][y]) != 'undefined') {
-  //   savedGrid = mapVals[x-1][y]
-  //   for (var r = 0; r < ROWS; ++r) {
-  //     var cell = getCell({x: COLS-1, y: r})
-  //     // cell.innerHTML = savedGrid[r][COLS-1]
-  //     console.log(savedGrid[r][COLS-1])
-  //   }
-  //
-  // }
-  // // console.log(mapVals[x+1][y])
-  // if (typeof(mapVals[x+1][y]) != 'undefined') {
-  //   savedGrid = mapVals[mapPos.x+1][mapPos.y]
-  //   for (var r = 0; r < ROWS; ++r) {
-  //     var cell = getCell({x: 0, y: r})
-  //     // cell.innerHTML = savedGrid[r][0]
-  //     console.log(savedGrid[r][0])
-  //   }
-  //
-  // }
+  if (Array.isArray(mapVals[mapPos.x-1]) == true) {
+    if (typeof(mapVals[x-1][y]) != 'undefined') {
+      savedGrid = mapVals[x-1][y]
+      for (var r = 0; r < ROWS; ++r) {
+        var cell = getCell({x: 0, y: r})
+        cell.innerHTML = savedGrid[r][COLS-1]
+      }
+
+    }
+  }
+  if (Array.isArray(mapVals[mapPos.x+1]) == true) {
+    if (typeof(mapVals[x+1][y]) != 'undefined') {
+      savedGrid = mapVals[mapPos.x+1][mapPos.y]
+      for (var r = 0; r < ROWS; ++r) {
+        var cell = getCell({x: COLS-1, y: r})
+        cell.innerHTML = savedGrid[r][0]
+      }
+
+    }
+  }
 }
