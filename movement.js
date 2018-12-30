@@ -29,32 +29,18 @@ function move (coords, d) {
     var y = coords.y
     switch (d) {
       case "u":
-        localTar = {x: x, y:y-1}
-        // localTar.x = coords.x
-        // localTar.y = coords.y - 1
-        console.log("going up")
+        localTar = {x: x, y:y-1
         break
       case "d":
         localTar = {x: x, y:y+1}
-        // localTar.x = coords.x
-        // localTar.y = coords.y + 1
-        console.log("going down")
         break
       case "l":
         localTar = {x: x-1, y: y}
-        // localTar.x = coords.x - 1
-        // localTar.y = coords.y
-        console.log("going left")
         break
       case "r":
         localTar = {x: x+1, y:y}
-        // localTar.x = coords.x + 1
-        // localTar.y = coords.y
-        console.log("going right")
         break
       }
-      console.log(localObj)
-      console.log(localTar)
       content = getCellContent(localTar)
       if (content == "") {
         var currentLocal = getCell(localObj)
@@ -64,7 +50,6 @@ function move (coords, d) {
         console.log(content)
         currentLocal.innerHTML = ''
         toLocal.innerHTML = content
-
 
         //do we want this bit?
         var currentCell = getCell(playerCoords)
