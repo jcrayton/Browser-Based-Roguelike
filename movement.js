@@ -59,9 +59,7 @@ function move (coords, d) {
     }
     var slot = (document.getElementById('slot' + itemPos))
     itemPos++
-    console.log(slot.innerHTML)
     slot.innerHTML = content
-    console.log(slot.innerHTML)
 
     setCell(playerCoords, '')
     setCell(coords, chars.player)
