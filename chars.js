@@ -6,9 +6,9 @@ var chars = {
   boulder: '*',
   chest: '[',
   gold: '$',
-  sword: '/'
-  chars.grass: 'w'
-  chars.fountain: 'Y'
+  sword: '/',
+  grass: 'w',
+  fountain: 'Y'
 }
 
 var types = {
