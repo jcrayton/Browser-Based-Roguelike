@@ -8,8 +8,8 @@ function move (coords, d) {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
-    currentCell.innerHTML = ''
-    toCell.innerHTML = chars.player
+    setCell(playerCoords, '')
+    setCell(coords, chars.player)
     playerCoords = coords
 
   }
@@ -42,23 +42,14 @@ function move (coords, d) {
         break
       }
       content = getCellContent(localTar)
-      if (content == "") {
-        var currentLocal = getCell(localObj)
-        var toLocal = getCell(localTar)
-        content = getCellContent(localObj)
+      if (content == '') {
+        setCell(localTar, getCellContent(localObj))
+        setCell(localObj, '')
 
-        currentLocal.innerHTML = ''
-        toLocal.innerHTML = content
-
-        //do we want this bit?
-        var currentCell = getCell(playerCoords)
-        var toCell = getCell(coords)
-
-        currentCell.innerHTML = ''
-        toCell.innerHTML = chars.player
+        setCell(playerCoords, '')
+        setCell(coords, chars.player)
         playerCoords = coords
       }
-
     return
   }
   else if (types.item.includes(content) == true) {
@@ -72,11 +63,8 @@ function move (coords, d) {
     slot.innerHTML = content
     console.log(slot.innerHTML)
 
-    var currentCell = getCell(playerCoords)
-    var toCell = getCell(coords)
-
-    currentCell.innerHTML = ''
-    toCell.innerHTML = chars.player
+    setCell(playerCoords, '')
+    setCell(coords, chars.player)
     playerCoords = coords
   }
 }

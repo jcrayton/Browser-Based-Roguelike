@@ -11,10 +11,10 @@ function populate () {
   // random lines of walls at random lengths
   for (let i = 0; i < 60; i++) {
     var l = getRandomInt(7)
-    var d = (getRandomInt(2) == 0) ? 's' : 'e'
+    var d = (getRandomInt(2) === 0) ? 's' : 'e'
     var maxX = 0
     var maxY = 0
-    if (d == 's') {
+    if (d === 's') {
       maxX = COLS
       maxY = ROWS - l - 1
     }
