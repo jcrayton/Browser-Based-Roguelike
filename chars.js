@@ -7,11 +7,14 @@ var chars = {
   chest: '[',
   gold: '$',
   sword: '/'
+  chars.grass: 'w'
+  chars.fountain: 'Y'
 }
 
 var types = {
   immovable: [chars.wall, chars.hole],
   creature: [chars.player, chars.fox],
   movable: [chars.boulder, chars.chest],
-  item: [chars.gold, chars.sword]
+  item: [chars.gold, chars.sword],
+  terrain: [chars.grass, chars.fountain]
 }
