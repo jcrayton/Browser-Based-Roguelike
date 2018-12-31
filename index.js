@@ -3,6 +3,7 @@ var ROWS = 20
 var playerCoords = {x: COLS / 2, y: ROWS / 2}
 var grid
 var bag
+var map
 var itemPos = 0
 var mapPos = {x:0, y:0}
 var mapVals = [[]]
@@ -13,6 +14,7 @@ function init() {
   populate()
   // var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
   // audio.play();
+  displayMap()
   inventory()
   run()
 }
