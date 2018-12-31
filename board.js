@@ -92,7 +92,7 @@ function boardSwap(d) {
       if (Array.isArray(mapVals[mapPos.x]) == false) {
         mapVals[mapPos.x] = []
       }
-      
+
       playerCoords.x = 0
       break
   }
@@ -115,10 +115,7 @@ function saveBoard() {
   for (var r = 0; r < ROWS; ++r) {
     savedGrid.push([])
     for (var c = 0; c < COLS; ++c) {
-      var cell = getCell({x: c, y: r})
-      // console.log(c, r)
-      savedGrid[r].push(cell.innerHTML)
-      // console.log(savedGrid[c][r])
+      savedGrid[r].push(getCellContent({x: c, y: r}))
     }
   }
   if (Array.isArray(mapVals[mapPos.x]) == true) {
@@ -134,8 +131,7 @@ function saveBoard() {
 function clearBoard(d) {
   for (var r = 0; r < ROWS; ++r) {
     for (var c = 0; c < COLS; ++c) {
-      var cell = getCell({x: c, y: r})
-      cell.innerHTML = ""
+      setCell({x: c, y: r}, "")
     }
   }
 }
@@ -144,8 +140,7 @@ function refillBoard() {
   var savedGrid = mapVals[mapPos.x][mapPos.y]
   for (var r = 0; r < ROWS; ++r) {
     for (var c = 0; c < COLS; ++c) {
-      var cell = getCell({x: c, y: r})
-      cell.innerHTML = savedGrid[r][c]
+      setCell({x: c, y: r}, savedGrid[r][c])
     }
   }
     setCell(playerCoords, chars.player)
