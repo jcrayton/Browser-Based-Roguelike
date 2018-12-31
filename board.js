@@ -1,3 +1,4 @@
+// this will need to include a greate array piece
 function createGrid (rows, cols) {
   grid = document.getElementById('grid')
   for (var r = 0; r < rows; ++r) {
@@ -8,6 +9,14 @@ function createGrid (rows, cols) {
       var cell = row.appendChild(document.createElement('td'))
       cell.id = 'cell' + r + 'x' + c
       cell.classList.add('cell')
+    }
+  }
+
+  underlyingGrid = []
+  for (var r = 0; r < ROWS; ++r) {
+    underlyingGrid.push([])
+    for (var c = 0; c < COLS; ++c) {
+      underlyingGrid[r].push([])
     }
   }
 }
@@ -29,6 +38,39 @@ function setCell (coords, char) {
   var cell = getCell(coords)
   cell.innerHTML = char
 }
+
+// // we would need to reassign values from one cell to
+// // another individually
+// function moveCell (origin, target, char) {
+//  underlyingGrid[origin.x][origin.y].splice(char, 1)
+//  underlyingGrid[target.x][target.y].push(char)
+//  displayCell(origin)
+//  displayCell(target)
+// }
+
+// // the idea is that this function would pick a val to display
+// function displayCell (array) {
+//  var cell = getCell(underlyingGrid[origin.x][origin.y])
+//  for (i = 0; i < array.length; i++) {
+//    if (visibility.high.includes(array[i]) = true) {
+//      cell.innerHTML = array[i]
+//      return
+//    }
+//  }
+//  for (i = 0; i < array.length; i++) {
+//    if (visibility.mid.includes(array[i]) = true) {
+//      cell.innerHTML = array[i]
+//      return
+//    }
+//  }
+//  for (i = 0; i < array.length; i++) {
+//    if (visibility.low.includes(array[i]) = true) {
+//      cell.innerHTML = array[i]
+//      return
+//    }
+//  }
+//  return
+// }
 
 function getCell (coords) {
   return document.getElementById('cell' + coords.y + 'x' + coords.x)

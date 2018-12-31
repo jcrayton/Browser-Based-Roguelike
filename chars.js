@@ -18,3 +18,9 @@ var types = {
   item: [chars.gold, chars.sword],
   terrain: [chars.grass, chars.fountain]
 }
+
+var visibility = {
+  high: [types.immovable, types.creature, types.movable],
+  mid: [types.item],
+  low: [types.terrain]
+}
