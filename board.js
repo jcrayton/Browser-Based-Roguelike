@@ -84,6 +84,11 @@ function displayCell (input) {
   return
 }
 
+function removeCell (coords, char) {
+  underlyingGrid[coords.x][coords.y].splice(underlyingGrid[coords.x][coords.y].indexOf(char), 1)
+  displayCell(coords)
+}
+
 function getCell (coords) {
   return document.getElementById('cell' + coords.y + 'x' + coords.x)
 }

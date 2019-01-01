@@ -4,7 +4,7 @@ function move (coords, d) {
     return
   }
   var content = getCellContent(coords)
-  if (content == "") {
+  if (content == "" || types.terrain.includes(content)) {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
@@ -43,27 +43,26 @@ function move (coords, d) {
         break
       }
       content = getCellContent(localTar)
-      if (content == '') {
-        setCell(localTar, getCellContent(localObj))
-        setCell(localObj, '')
-
-        setCell(playerCoords, '')
-        setCell(coords, chars.player)
+      if (content == '' || types.terrain.includes(content)) {
+        moveCell(localObj, localTar, getCellContent(localObj))
+        moveCell(playerCoords, coords, chars.player)
         playerCoords = coords
       }
     return
   }
   else if (types.item.includes(content) == true) {
     // superMap.push(content)
-    // if (itemPos == 10) {
-    //   return
-    // }
-    // var slot = (document.getElementById('slot' + itemPos))
-    // itemPos++
-    // slot.innerHTML = content
+    if (itemPos == 10) {
+      return
+    }
+    var slot = (document.getElementById('slot' + itemPos))
+    itemPos++
+    slot.innerHTML = content
 
-    setCell(playerCoords, '')
-    setCell(coords, chars.player)
+    // setCell(playerCoords, '')
+    // setCell(coords, chars.player)
+    removeCell(coords, content)
+    moveCell(playerCoords, coords, chars.player)
     playerCoords = coords
   }
 }

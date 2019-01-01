@@ -16,7 +16,7 @@ function populate () {
   }
 
   // random lines of walls at random lengths
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 30; i++) {
     var l = getRandomInt(7)
     var d = (getRandomInt(2) === 0) ? 's' : 'e'
     var maxX = 0
@@ -30,6 +30,9 @@ function populate () {
       maxY = ROWS
     }
     objGen(chars.wall, getRandomInt(maxX), getRandomInt(maxY), d, l)
+  }
+  for (let i = 0; i < 80; i++) {
+    objGen(chars.grass)
   }
 }
 
