@@ -12,13 +12,7 @@ function createGrid (rows, cols) {
     }
   }
 
-  underlyingGrid = []
-  for (var r = 0; r < ROWS; ++r) {
-    underlyingGrid.push([])
-    for (var c = 0; c < COLS; ++c) {
-      underlyingGrid[r].push([])
-    }
-  }
+
 }
 
 function getEmptyCoords () {
@@ -34,43 +28,61 @@ function getEmptyCoords () {
   return emptyCells
 }
 
+// function setCell (coords, char) {
+//   var cell = getCell(coords)
+//   cell.innerHTML = char
+// }
+
 function setCell (coords, char) {
-  var cell = getCell(coords)
-  cell.innerHTML = char
+  if (Array.isArray(char) == true) {
+    for (i=0; i < char.length; i++) {
+      underlyingGrid[coords.x][coords.y].push(String(char[i]))
+    }
+  }
+  else if (char == "") {
+    underlyingGrid[coords.x][coords.y] = []
+  }
+  else {
+    underlyingGrid[coords.x][coords.y].push(char)
+  }
+  displayCell(coords)
 }
 
-// // we would need to reassign values from one cell to
-// // another individually
-// function moveCell (origin, target, char) {
-//  underlyingGrid[origin.x][origin.y].splice(char, 1)
-//  underlyingGrid[target.x][target.y].push(char)
-//  displayCell(origin)
-//  displayCell(target)
-// }
+// we would need to reassign values from one cell to
+// another individually
+function moveCell (origin, target, char) {
+  underlyingGrid[origin.x][origin.y].splice(underlyingGrid[origin.x][origin.y].indexOf(char), 1)
+  underlyingGrid[target.x][target.y].push(char)
+  displayCell(origin)
+  displayCell(target)
+}
 
-// // the idea is that this function would pick a val to display
-// function displayCell (array) {
-//  var cell = getCell(underlyingGrid[origin.x][origin.y])
-//  for (i = 0; i < array.length; i++) {
-//    if (visibility.high.includes(array[i]) = true) {
-//      cell.innerHTML = array[i]
-//      return
-//    }
-//  }
-//  for (i = 0; i < array.length; i++) {
-//    if (visibility.mid.includes(array[i]) = true) {
-//      cell.innerHTML = array[i]
-//      return
-//    }
-//  }
-//  for (i = 0; i < array.length; i++) {
-//    if (visibility.low.includes(array[i]) = true) {
-//      cell.innerHTML = array[i]
-//      return
-//    }
-//  }
-//  return
-// }
+// the idea is that this function would pick a val to display
+function displayCell (input) {
+  var cell = getCell(input)
+  var array = underlyingGrid[input.x][input.y]
+
+  for (i = 0; i < array.length; i++) {
+    if (types.immovable.includes(array[i]) || types.creature.includes(array[i]) || types.movable.includes(array[i]) == true) {
+      cell.innerHTML = array[i]
+      return
+    }
+  }
+  for (i = 0; i < array.length; i++) {
+   if (types.item.includes(array[i]) == true) {
+     cell.innerHTML = array[i]
+     return
+   }
+  }
+  for (i = 0; i < array.length; i++) {
+   if (types.terrain.includes(array[i]) == true) {
+     cell.innerHTML = array[i]
+     return
+   }
+  }
+  cell.innerHTML = ""
+  return
+}
 
 function getCell (coords) {
   return document.getElementById('cell' + coords.y + 'x' + coords.x)
@@ -138,7 +150,6 @@ function boardSwap(d) {
       playerCoords.x = 0
       break
   }
-  console.log(mapPos)
   if (typeof(mapVals[mapPos.x][mapPos.y]) == 'undefined') {
     populate()
   }
@@ -152,38 +163,32 @@ function boardSwap(d) {
 
 function saveBoard() {
   setCell(playerCoords, "")
-  console.log("within save")
-  var savedGrid = []
-  for (var r = 0; r < ROWS; ++r) {
-    savedGrid.push([])
-    for (var c = 0; c < COLS; ++c) {
-      savedGrid[r].push(getCellContent({x: c, y: r}))
-    }
-  }
   if (Array.isArray(mapVals[mapPos.x]) == true) {
-    mapVals[mapPos.x][mapPos.y] = savedGrid
+    mapVals[mapPos.x][mapPos.y] = underlyingGrid
   }
   else {
     mapVals[mapPos.x] = []
-    mapVals[mapPos.x][mapPos.y] = savedGrid
+    mapVals[mapPos.x][mapPos.y] = underlyingGrid
   }
-  console.log(mapPos.x, mapPos.y)
 }
 
-function clearBoard(d) {
-  for (var r = 0; r < ROWS; ++r) {
-    for (var c = 0; c < COLS; ++c) {
-      setCell({x: c, y: r}, "")
+function clearBoard() {
+  underlyingGrid = []
+  for (var r = 0; r < COLS; ++r) {
+    for (var c = 0; c < ROWS; ++c) {
+      var cell = getCell({x: r, y:c})
+      cell.innerHTML = ""
     }
   }
 }
 
 function refillBoard() {
-  var savedGrid = mapVals[mapPos.x][mapPos.y]
-  for (var r = 0; r < ROWS; ++r) {
-    for (var c = 0; c < COLS; ++c) {
-      setCell({x: c, y: r}, savedGrid[r][c])
+  underlyingGrid = mapVals[mapPos.x][mapPos.y]
+  for (var r = 0; r < COLS; ++r) {
+    for (var c = 0; c < ROWS; ++c) {
+      var cell = getCell({x: r, y:c})
+      displayCell({x: r, y:c})
     }
   }
-    setCell(playerCoords, chars.player)
+
 }

@@ -1,4 +1,11 @@
 function populate () {
+  for (var r = 0; r < COLS+1; ++r) {
+    underlyingGrid.push([])
+    for (var c = 0; c < ROWS+1; ++c) {
+      underlyingGrid[r].push([])
+    }
+  }
+
   setCell(playerCoords, chars.player)
 
   objGen(chars.boulder)
@@ -29,19 +36,25 @@ function populate () {
 function edgeCorrection() {
   var x = mapPos.x
   var y = mapPos.y
+  var savedGrid
 
   // console.log(mapVals[x][y-1])
   if (typeof(mapVals[x][y-1]) != 'undefined') {
     savedGrid = mapVals[x][y-1]
     for (var c = 0; c < COLS; ++c) {
-      setCell({x: c, y: 0}, savedGrid[ROWS-1][c])
+      // console.log(savedGrid[c][ROWS-1])
+      setCell({x: c, y: 0}, "")
+      setCell({x: c, y: 0}, savedGrid[c][ROWS-1])
     }
   }
   // console.log(mapVals[x][y+1])
   if (typeof(mapVals[x][y+1]) != 'undefined') {
     savedGrid = mapVals[x][y+1]
     for (var c = 0; c < COLS; ++c) {
-      setCell({x: c, y: ROWS-1}, savedGrid[0][c])
+      setCell({x: c, y: ROWS-1}, "")
+      // console.log({x: c, y: ROWS-1})
+      setCell({x: c, y: ROWS-1}, savedGrid[c][0])
+      // console.log({x: c, y: ROWS-1})
     }
 
   }
@@ -49,7 +62,8 @@ function edgeCorrection() {
     if (typeof(mapVals[x-1][y]) != 'undefined') {
       savedGrid = mapVals[x-1][y]
       for (var r = 0; r < ROWS; ++r) {
-        setCell({x: 0, y: r}, savedGrid[r][COLS-1])
+        setCell({x: 0, y: r}, "")
+        setCell({x: 0, y: r}, savedGrid[COLS-1][r])
       }
 
     }
@@ -58,7 +72,8 @@ function edgeCorrection() {
     if (typeof(mapVals[x+1][y]) != 'undefined') {
       savedGrid = mapVals[mapPos.x+1][mapPos.y]
       for (var r = 0; r < ROWS; ++r) {
-        setCell({x: COLS-1, y: r}, savedGrid[r][0])
+        setCell({x: COLS-1, y: r}, "")
+        setCell({x: COLS-1, y: r}, savedGrid[0][r])
       }
 
     }

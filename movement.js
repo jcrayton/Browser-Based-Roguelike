@@ -8,8 +8,9 @@ function move (coords, d) {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
-    setCell(playerCoords, '')
-    setCell(coords, chars.player)
+    // setCell(playerCoords, '')
+    // setCell(coords, chars.player)
+    moveCell(playerCoords, coords, chars.player)
     playerCoords = coords
 
   }
@@ -54,12 +55,12 @@ function move (coords, d) {
   }
   else if (types.item.includes(content) == true) {
     // superMap.push(content)
-    if (itemPos == 10) {
-      return
-    }
-    var slot = (document.getElementById('slot' + itemPos))
-    itemPos++
-    slot.innerHTML = content
+    // if (itemPos == 10) {
+    //   return
+    // }
+    // var slot = (document.getElementById('slot' + itemPos))
+    // itemPos++
+    // slot.innerHTML = content
 
     setCell(playerCoords, '')
     setCell(coords, chars.player)

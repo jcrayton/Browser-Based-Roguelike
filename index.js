@@ -2,7 +2,7 @@ var COLS = 40
 var ROWS = 20
 var playerCoords = {x: COLS / 2, y: ROWS / 2}
 var grid
-var underlyingGrid
+var underlyingGrid = []
 var bag
 var map
 var itemPos = 0
