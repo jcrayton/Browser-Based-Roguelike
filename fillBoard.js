@@ -43,7 +43,6 @@ function edgeCorrection() {
     for (var c = 0; c < COLS; ++c) {
       setCell({x: c, y: ROWS-1}, savedGrid[0][c])
     }
-
   }
   if (Array.isArray(mapVals[mapPos.x-1]) == true) {
     if (typeof(mapVals[x-1][y]) != 'undefined') {
@@ -51,7 +50,6 @@ function edgeCorrection() {
       for (var r = 0; r < ROWS; ++r) {
         setCell({x: 0, y: r}, savedGrid[r][COLS-1])
       }
-
     }
   }
   if (Array.isArray(mapVals[mapPos.x+1]) == true) {
@@ -60,7 +58,6 @@ function edgeCorrection() {
       for (var r = 0; r < ROWS; ++r) {
         setCell({x: COLS-1, y: r}, savedGrid[r][0])
       }
-
     }
   }
 }

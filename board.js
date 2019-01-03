@@ -136,6 +136,7 @@ function clearBoard(d) {
   }
 }
 
+// TODO generalize so it takes in a grid and start coords
 function refillBoard() {
   var savedGrid = mapVals[mapPos.x][mapPos.y]
   for (var r = 0; r < ROWS; ++r) {
