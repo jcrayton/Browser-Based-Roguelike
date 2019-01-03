@@ -4,12 +4,13 @@ function move (coords, d) {
     return
   }
   var content = getCellContent(coords)
-  if (content == "") {
+  if (content == "" || types.terrain.includes(content)) {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
-    setCell(playerCoords, '')
-    setCell(coords, chars.player)
+    // setCell(playerCoords, '')
+    // setCell(coords, chars.player)
+    moveCell(playerCoords, coords, chars.player)
     playerCoords = coords
 
   }
@@ -42,12 +43,9 @@ function move (coords, d) {
         break
       }
       content = getCellContent(localTar)
-      if (content == '') {
-        setCell(localTar, getCellContent(localObj))
-        setCell(localObj, '')
-
-        setCell(playerCoords, '')
-        setCell(coords, chars.player)
+      if (content == '' || types.terrain.includes(content)) {
+        moveCell(localObj, localTar, getCellContent(localObj))
+        moveCell(playerCoords, coords, chars.player)
         playerCoords = coords
       }
     return
@@ -61,8 +59,10 @@ function move (coords, d) {
     itemPos++
     slot.innerHTML = content
 
-    setCell(playerCoords, '')
-    setCell(coords, chars.player)
+    // setCell(playerCoords, '')
+    // setCell(coords, chars.player)
+    removeCell(coords, content)
+    moveCell(playerCoords, coords, chars.player)
     playerCoords = coords
   }
 }
