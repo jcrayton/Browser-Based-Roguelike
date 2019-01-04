@@ -11,38 +11,39 @@ function createGrid (rows, cols) {
       cell.classList.add('cell')
     }
   }
-
-
 }
 
 function getEmptyCoords () {
   var emptyCells = []
   for (var row = 0; row < ROWS; row++) {
     for (var col = 0; col < COLS; col++) {
-      var coords = {x: col, y: row}
-      if (getCellContent(coords) === '') {
-        emptyCells.push(coords)
+      if (underlyingGrid[col][row].length === 0) {
+        emptyCells.push({x: col, y: row})
       }
     }
   }
   return emptyCells
 }
 
-// function setCell (coords, char) {
-//   var cell = getCell(coords)
-//   cell.innerHTML = char
-// }
-
-function setCell (coords, char) {
-  if (Array.isArray(char) == true) {
-    for (i=0; i < char.length; i++) {
-      underlyingGrid[coords.x][coords.y].push(String(char[i]))
+function boardIsFull () {
+  for (r = 0; r < ROWS - 1; r++) {
+    for (c = 0; c < COLS - 1; c++) {
+      if (underlyingGrid[c][r].length === 0) {
+        return false
+      }
     }
   }
-  else if (char == "") {
+  return true
+}
+
+function setCell (coords, char) {
+  if (Array.isArray(char) === true) {
+    for (i = 0; i < char.length; i++) {
+      underlyingGrid[coords.x][coords.y].push(String(char[i]))
+    }
+  } else if (char === '') {
     underlyingGrid[coords.x][coords.y] = []
-  }
-  else {
+  } else {
     underlyingGrid[coords.x][coords.y].push(char)
   }
   displayCell(coords)
@@ -57,30 +58,30 @@ function moveCell (origin, target, char) {
   displayCell(target)
 }
 
-// the idea is that this function would pick a val to display
+// the idea is that this function would pick a val to display out of the items that are in the cell
 function displayCell (input) {
   var cell = getCell(input)
   var array = underlyingGrid[input.x][input.y]
 
   for (i = 0; i < array.length; i++) {
-    if (types.immovable.includes(array[i]) || types.creature.includes(array[i]) || types.movable.includes(array[i]) == true) {
+    if (types.immovable.includes(array[i]) || types.creature.includes(array[i]) || types.movable.includes(array[i]) === true) {
       cell.innerHTML = array[i]
       return
     }
   }
   for (i = 0; i < array.length; i++) {
-   if (types.item.includes(array[i]) == true) {
-     cell.innerHTML = array[i]
-     return
-   }
+    if (types.item.includes(array[i]) === true) {
+      cell.innerHTML = array[i]
+      return
+    }
   }
   for (i = 0; i < array.length; i++) {
-   if (types.terrain.includes(array[i]) == true) {
-     cell.innerHTML = array[i]
-     return
-   }
+    if (types.terrain.includes(array[i]) === true) {
+      cell.innerHTML = array[i]
+      return
+    }
   }
-  cell.innerHTML = ""
+  cell.innerHTML = ''
   return
 }
 
@@ -125,14 +126,14 @@ function getRightCoords () {
   return {x: playerCoords.x + 1, y: playerCoords.y}
 }
 
-function boardSwap(d) {
-  //will need to deal with 1) the map and 2) the player
+function boardSwap (d) {
+  // will need to deal with 1) the map and 2) the player
   saveBoard()
   clearBoard(d)
   switch (d) {
     case "u":
       mapPos.y--
-      playerCoords.y = ROWS-1
+      playerCoords.y = ROWS - 1
       break
     case "d":
       mapPos.y++
@@ -140,25 +141,24 @@ function boardSwap(d) {
       break
     case "l":
       mapPos.x--
-      if (Array.isArray(mapVals[mapPos.x]) == false) {
+      if (Array.isArray(mapVals[mapPos.x]) === false) {
         mapVals[mapPos.x] = []
       }
 
-      playerCoords.x = COLS-1
+      playerCoords.x = COLS - 1
       break
     case "r":
       mapPos.x++
-      if (Array.isArray(mapVals[mapPos.x]) == false) {
+      if (Array.isArray(mapVals[mapPos.x]) === false) {
         mapVals[mapPos.x] = []
       }
 
       playerCoords.x = 0
       break
   }
-  if (typeof(mapVals[mapPos.x][mapPos.y]) == 'undefined') {
+  if (typeof (mapVals[mapPos.x][mapPos.y]) === 'undefined') {
     populate()
-  }
-  else {
+  } else {
     refillBoard()
   }
   edgeCorrection()
@@ -167,11 +167,10 @@ function boardSwap(d) {
 }
 
 function saveBoard() {
-  setCell(playerCoords, "")
-  if (Array.isArray(mapVals[mapPos.x]) == true) {
+  setCell(playerCoords, '')
+  if (Array.isArray(mapVals[mapPos.x]) === true) {
     mapVals[mapPos.x][mapPos.y] = underlyingGrid
-  }
-  else {
+  } else {
     mapVals[mapPos.x] = []
     mapVals[mapPos.x][mapPos.y] = underlyingGrid
   }
@@ -181,8 +180,8 @@ function clearBoard() {
   underlyingGrid = []
   for (var r = 0; r < COLS; ++r) {
     for (var c = 0; c < ROWS; ++c) {
-      var cell = getCell({x: r, y:c})
-      cell.innerHTML = ""
+      var cell = getCell({x: r, y: c})
+      cell.innerHTML = ''
     }
   }
 }
@@ -192,9 +191,8 @@ function refillBoard() {
   underlyingGrid = mapVals[mapPos.x][mapPos.y]
   for (var r = 0; r < COLS; ++r) {
     for (var c = 0; c < ROWS; ++c) {
-      var cell = getCell({x: r, y:c})
-      displayCell({x: r, y:c})
+      var cell = getCell({x: r, y: c})
+      displayCell({x: r, y: c})
     }
   }
-
 }
