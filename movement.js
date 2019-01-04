@@ -3,8 +3,8 @@ function move (coords, d) {
     boardSwap(d)
     return
   }
-  var content = getCellContent(coords)
-  if (content === '' || types.terrain.includes(content)) {
+  var content = getDisplayItem(coords)
+  if (content.char === '' || types.terrain.includes(content)) {
     var currentCell = getCell(playerCoords)
     var toCell = getCell(coords)
 
@@ -40,24 +40,21 @@ function move (coords, d) {
         localTar = {x: x + 1, y: y}
         break
     }
-    content = getCellContent(localTar)
-    if (content === '' || types.terrain.includes(content)) {
-      moveCell(localObj, localTar, getCellContent(localObj))
+    content = getDisplayItem(localTar)
+    if (content.char === '' || types.terrain.includes(content)) {
+      moveCell(localObj, localTar, getDisplayItem(localObj))
       moveCell(playerCoords, coords, chars.player)
       playerCoords = coords
     }
     return
   } else if (types.item.includes(content) === true) {
-    // superMap.push(content)
     if (itemPos === 10) {
       return
     }
     var slot = (document.getElementById('slot' + itemPos))
     itemPos++
-    slot.innerHTML = content
+    slot.innerHTML = content.char
 
-    // setCell(playerCoords, '')
-    // setCell(coords, chars.player)
     removeCell(coords, content)
     moveCell(playerCoords, coords, chars.player)
     playerCoords = coords

@@ -7,9 +7,9 @@ function objGen(type, x, y, d, l) {
   if (x === undefined) {
     var test = false
     while (test === false) {
-      var i = {x: getRandomInt(COLS), y: getRandomInt(ROWS)}
-      if (getCellContent(i) === "") {
-        setCell(i, type)
+      var coords = {x: getRandomInt(COLS), y: getRandomInt(ROWS)}
+      if (getDisplayItem(coords).char === "") {
+        setCell(coords, type)
         test = true
       }
     }
@@ -19,7 +19,7 @@ function objGen(type, x, y, d, l) {
   else if (d !== undefined && l !== undefined) {
     while (l !== 0) {
       var coords = {x: x, y: y}
-      if (getCellContent(coords) === '') {
+      if (getDisplayItem(coords).char === "") {
         setCell(coords, type)
       }
       switch (d) {

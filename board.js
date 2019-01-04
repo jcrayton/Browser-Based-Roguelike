@@ -36,53 +36,59 @@ function boardIsFull () {
   return true
 }
 
-function setCell (coords, char) {
-  if (Array.isArray(char) === true) {
+function setCell (coords, type) {
+  if (Array.isArray(type) === true) {
     for (i = 0; i < char.length; i++) {
-      underlyingGrid[coords.x][coords.y].push(String(char[i]))
+      underlyingGrid[coords.x][coords.y].push(String(type[i]))
     }
-  } else if (char === '') {
+  } else if (type.char === '') {
     underlyingGrid[coords.x][coords.y] = []
   } else {
-    underlyingGrid[coords.x][coords.y].push(char)
+    underlyingGrid[coords.x][coords.y].push(type)
   }
   displayCell(coords)
 }
 
 // we would need to reassign values from one cell to
 // another individually
-function moveCell (origin, target, char) {
-  underlyingGrid[origin.x][origin.y].splice(underlyingGrid[origin.x][origin.y].indexOf(char), 1)
-  underlyingGrid[target.x][target.y].push(char)
+function moveCell (origin, target, type) {
+  underlyingGrid[origin.x][origin.y].splice(underlyingGrid[origin.x][origin.y].indexOf(type), 1)
+  underlyingGrid[target.x][target.y].push(type)
   displayCell(origin)
   displayCell(target)
 }
 
-// the idea is that this function would pick a val to display out of the items that are in the cell
-function displayCell (input) {
-  var cell = getCell(input)
-  var array = underlyingGrid[input.x][input.y]
+function renderCellHTML (coords, object) {
+  var cell = getCell(coords)
+  cell.innerHTML = object.char
+  cell.style.color = object.color
+}
 
+// the idea is that this function would pick a val to display out of the items that are in the cell
+function getDisplayItem (coords) {
+  var cell = getCell(coords)
+  var array = underlyingGrid[coords.x][coords.y]
   for (i = 0; i < array.length; i++) {
     if (types.immovable.includes(array[i]) || types.creature.includes(array[i]) || types.movable.includes(array[i]) === true) {
-      cell.innerHTML = array[i]
-      return
+      return array[i]
     }
   }
   for (i = 0; i < array.length; i++) {
     if (types.item.includes(array[i]) === true) {
-      cell.innerHTML = array[i]
-      return
+      return array[i]
     }
   }
   for (i = 0; i < array.length; i++) {
     if (types.terrain.includes(array[i]) === true) {
-      cell.innerHTML = array[i]
-      return
+      return array[i]
     }
   }
-  cell.innerHTML = ''
-  return
+  return types.empty[0]
+}
+
+function displayCell (coords) {
+  var displayItem = getDisplayItem(coords)
+  renderCellHTML(coords, displayItem)
 }
 
 function removeCell (coords, char) {
@@ -95,7 +101,7 @@ function getCell (coords) {
 }
 
 function getCellContent (coords) {
-  return getCell(coords).innerHTML
+  return underlyingGrid[coords.x][coords.y]
 }
 
 function getAboveCoords () {

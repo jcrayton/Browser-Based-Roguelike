@@ -29,7 +29,7 @@ function populate () {
     objGen(chars.wall, getRandomInt(maxX), getRandomInt(maxY), d, l)
   }
 
-  for (let i = 0; i < 700; i++) {
+  for (let i = 0; i < 80; i++) {
     objGen(chars.grass)
   }
   setCell(playerCoords, chars.player)
