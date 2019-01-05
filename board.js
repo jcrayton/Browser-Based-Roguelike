@@ -67,7 +67,6 @@ function renderCellHTML (coords, object) {
 
 // the idea is that this function would pick a val to display out of the items that are in the cell
 function getDisplayItem (coords) {
-  var cell = getCell(coords)
   var array = underlyingGrid[coords.x][coords.y]
   for (i = 0; i < array.length; i++) {
     if (types.creature.includes(array[i])) {
@@ -178,7 +177,7 @@ function boardSwap (d) {
   return playerCoords
 }
 
-function saveBoard() {
+function saveBoard () {
   removeCell(playerCoords, chars.player)
   if (Array.isArray(mapVals[mapPos.x]) === true) {
     mapVals[mapPos.x][mapPos.y] = underlyingGrid
@@ -188,7 +187,7 @@ function saveBoard() {
   }
 }
 
-function clearBoard() {
+function clearBoard () {
   underlyingGrid = []
   for (var r = 0; r < COLS; ++r) {
     for (var c = 0; c < ROWS; ++c) {
@@ -199,11 +198,10 @@ function clearBoard() {
 }
 
 // TODO generalize so it takes in a grid and start coords
-function refillBoard() {
+function refillBoard () {
   underlyingGrid = mapVals[mapPos.x][mapPos.y]
   for (var r = 0; r < COLS; ++r) {
     for (var c = 0; c < ROWS; ++c) {
-      var cell = getCell({x: r, y: c})
       displayCell({x: r, y: c})
     }
   }

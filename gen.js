@@ -1,4 +1,4 @@
-function objGen(type, x, y, d, l) {
+function objGen (type, x, y, d, l) {
   if (boardIsFull()) {
     return
   }
