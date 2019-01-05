@@ -38,11 +38,12 @@ function boardIsFull () {
 
 function setCell (coords, type) {
   if (Array.isArray(type) === true) {
-    for (i = 0; i < char.length; i++) {
+    for (i = 0; i < type.length; i++) {
       underlyingGrid[coords.x][coords.y].push(String(type[i]))
     }
-  } else if (type.char === '') {
+  } else if (type.type === '') {
     underlyingGrid[coords.x][coords.y] = []
+    underlyingGrid[coords.x][coords.y].push(String(type[i]))
   } else {
     underlyingGrid[coords.x][coords.y].push(type)
   }
@@ -169,11 +170,11 @@ function boardSwap (d) {
   }
   edgeCorrection()
   setCell(playerCoords, chars.player)
-  return
+  return playerCoords
 }
 
 function saveBoard() {
-  setCell(playerCoords, '')
+  removeCell(playerCoords, chars.player)
   if (Array.isArray(mapVals[mapPos.x]) === true) {
     mapVals[mapPos.x][mapPos.y] = underlyingGrid
   } else {

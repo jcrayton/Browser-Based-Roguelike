@@ -13,6 +13,7 @@ var mapVals = [[]]
 function init() {
   createGrid(ROWS, COLS)
   populate()
+  setCell(playerCoords, chars.player)
   // var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
   // audio.play();
   displayMap()
@@ -35,16 +36,16 @@ function run () {
     var key = e.key || e.keyCode
     switch (key) {
       case "ArrowLeft":
-        move(getLeftCoords(), "l")
+        playerCoords = move(playerCoords, getLeftCoords(), "l")
         break
       case "ArrowUp":
-        move(getAboveCoords(), "u")
+        playerCoords = move(playerCoords, getAboveCoords(), "u")
         break
       case "ArrowRight":
-        move(getRightCoords(), "r")
+        playerCoords = move(playerCoords, getRightCoords(), "r")
         break
       case "ArrowDown":
-        move(getBelowCoords(), "d")
+        playerCoords = move(playerCoords, getBelowCoords(), "d")
         break
     }
   })
