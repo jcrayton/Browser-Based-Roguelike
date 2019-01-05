@@ -109,32 +109,44 @@ function getCellContent (coords) {
   return underlyingGrid[coords.x][coords.y]
 }
 
-function getAboveCoords () {
-  if (playerCoords.y === 0) {
+function getAboveCoords (coords) {
+  if (coords == undefined) {
+    coords = playerCoords
+  }
+  if (coords.y === 0) {
     return null
   }
-  return {x: playerCoords.x, y: playerCoords.y - 1}
+  return {x: coords.x, y: coords.y - 1}
 }
 
-function getBelowCoords () {
-  if (playerCoords.y === ROWS - 1) {
+function getBelowCoords (coords) {
+  if (coords == undefined) {
+    coords = playerCoords
+  }
+  if (coords.y === ROWS - 1) {
     return null
   }
-  return {x: playerCoords.x, y: playerCoords.y + 1}
+  return {x: coords.x, y: coords.y + 1}
 }
 
-function getLeftCoords () {
-  if (playerCoords.x === 0) {
+function getLeftCoords (coords) {
+  if (coords == undefined) {
+    coords = playerCoords
+  }
+  if (coords.x === 0) {
     return null
   }
-  return {x: playerCoords.x - 1, y: playerCoords.y}
+  return {x: coords.x - 1, y: coords.y}
 }
 
-function getRightCoords () {
-  if (playerCoords.x === COLS - 1) {
+function getRightCoords (coords) {
+  if (coords == undefined) {
+    coords = playerCoords
+  }
+  if (coords.x === COLS - 1) {
     return null
   }
-  return {x: playerCoords.x + 1, y: playerCoords.y}
+  return {x: coords.x + 1, y: coords.y}
 }
 
 function boardSwap (d) {
