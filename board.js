@@ -70,7 +70,12 @@ function getDisplayItem (coords) {
   var cell = getCell(coords)
   var array = underlyingGrid[coords.x][coords.y]
   for (i = 0; i < array.length; i++) {
-    if (types.immovable.includes(array[i]) || types.creature.includes(array[i]) || types.movable.includes(array[i]) === true) {
+    if (types.creature.includes(array[i])) {
+      return array[i]
+    }
+  }
+  for (i = 0; i < array.length; i++) {
+    if (types.immovable.includes(array[i]) || types.movable.includes(array[i]) === true) {
       return array[i]
     }
   }
