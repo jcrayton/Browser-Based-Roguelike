@@ -3,10 +3,16 @@ function move (origin, coords, d, char) {
     char = chars.player
 
   }
-  if (coords == null && char == chars.player) {
-    return boardSwap(d)
-    // return
+  if (coords == null) {
+    if (char == chars.player) {
+      return boardSwap(d)
+      // return
+    }
   }
+  // else if (getDisplayItem(coords) == null){
+  //   return origin
+  //   // return
+  // }
   var content = getDisplayItem(coords)
   if (content.char === '' || types.terrain.includes(content)) {
     moveCell(origin, coords, char)
@@ -28,16 +34,16 @@ function move (origin, coords, d, char) {
     var y = coords.y
     switch (d) {
       case "u":
-        localTar = {x: x, y: y-1}
+        localTar = getAboveCoords(coords)
         break
       case "d":
-        localTar = {x: x, y: y+1}
+        localTar = getBelowCoords(coords)
         break
       case "l":
-        localTar = {x: x-1, y: y}
+        localTar = getLeftCoords(coords)
         break
       case "r":
-        localTar = {x: x+1, y: y}
+        localTar = getRightCoords(coords)
         break
     }
     var temp = getDisplayItem(coords)
