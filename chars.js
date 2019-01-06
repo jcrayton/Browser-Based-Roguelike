@@ -16,6 +16,19 @@ var chars = {
   empty: {char: '', color: 'magenta'}
 }
 
+function getType (object) {
+  var test = object
+  if (object.charObj !== undefined) {
+    // then object is an instance, not a member of the chars variable
+    test = object.charObj
+  }
+  for (var type of types) {
+    if (type.includes(test)) {
+      return type
+    }
+  }
+}
+
 var types = {
   immovable: [chars.wall, chars.hole],
   creature: [chars.player, chars.fox, chars.babaYaga, chars.firebird, chars.deer,
@@ -34,39 +47,51 @@ var visibility = {
 
 var creatures = {
   player: {
+    charObj: chars.player,
     hp: 10,
     attack: 5,
     aim: 0.75,
-    friendly: 1
+    friendly: 1,
+    freq: 0
   },
   fox: {
+    charObj: chars.fox,
     hp: 4,
     attack: 3,
     aim: 0.7,
-    friendly: 0.8
+    friendly: 0.8,
+    freq: 0.4
   },
   babaYaga: {
+    charObj: chars.babaYaga,
     hp: 100,
     attack: 15,
     aim: 0.9,
-    friendly: 0.5
+    friendly: 0.5,
+    freq: 0.1
   },
   firebird: {
+    charObj: chars.firebird,
     hp: 20,
     attack: 8,
     aim: 0.5,
-    friendly: 1
+    friendly: 1,
+    freq: 0.05
   },
   deer: {
+    charObj: chars.deer,
     hp: 20,
     attack: 2,
     aim: 0.2,
-    friendly: 0.9
+    friendly: 0.9,
+    freq: 0.7
   },
   kolobok: {
+    charObj: chars.kolobok,
     hp: 1,
     attack: 0,
     aim: 0.2,
-    friendly: 1
+    friendly: 1,
+    freq: 0.15
   }
 }

@@ -43,6 +43,27 @@ function objGen (type, x, y, d, l) {
   }
 }
 
+function newCreature (creature) {
+  var obj = {
+    char: creature.charObj.char,
+    color: creature.charObj.color,
+    hp: creature.hp,
+    attack: creature.attack,
+    aim: creature.aim,
+    friendly: decideBoolean(creature.friendly),
+    freq: creature.freq
+  }
+  console.log('creature', creature);
+  console.log('obj', obj);
+  return obj
+}
+
+// probability of returning true is approx. "probability"
+// probability should be between 0 and 1
+function decideBoolean (probability) {
+  return Math.random() < probability
+}
+
 function getRandomInt (max) {
   return Math.floor(Math.random() * Math.floor(max))
 }

@@ -9,11 +9,13 @@ function populate () {
   objGen(chars.boulder)
   objGen(chars.sword)
 
-  objGen(chars.fox)
-  objGen(chars.babaYaga)
-  objGen(chars.firebird)
-  objGen(chars.deer)
-  objGen(chars.kolobok)
+  objGen(newCreature(creatures.fox))
+  objGen(newCreature(creatures.babaYaga))
+  objGen(newCreature(creatures.firebird))
+  objGen(newCreature(creatures.deer))
+  objGen(newCreature(creatures.kolobok))
+
+  objGen({char: 'x', color: 'red'})
 
   for (let i = 0; i < 10; i++) {
     objGen(chars.wall)

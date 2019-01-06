@@ -36,16 +36,20 @@ function boardIsFull () {
   return true
 }
 
-function setCell (coords, type) {
-  if (Array.isArray(type) === true) {
-    for (i = 0; i < type.length; i++) {
-      underlyingGrid[coords.x][coords.y].push(String(type[i]))
+function isEmpty (coords) {
+  return (getDisplayItem(coords) == '')
+}
+
+function setCell (coords, object) {
+  if (Array.isArray(object) === true) {
+    for (i = 0; i < object.length; i++) {
+      underlyingGrid[coords.x][coords.y].push(String(object[i]))
     }
-  } else if (type.type === '') {
+  } else if (object.char == '') {
     underlyingGrid[coords.x][coords.y] = []
-    underlyingGrid[coords.x][coords.y].push(String(type[i]))
+    underlyingGrid[coords.x][coords.y].push(String(object[i]))
   } else {
-    underlyingGrid[coords.x][coords.y].push(type)
+    underlyingGrid[coords.x][coords.y].push(object)
   }
   displayCell(coords)
 }
@@ -66,28 +70,51 @@ function renderCellHTML (coords, object) {
 }
 
 // the idea is that this function would pick a val to display out of the items that are in the cell
+// TODO could iterate over a list of anonymous functions instead of multiple for loops.
 function getDisplayItem (coords) {
   var array = underlyingGrid[coords.x][coords.y]
-  for (i = 0; i < array.length; i++) {
-    if (types.creature.includes(array[i])) {
-      return array[i]
+  var displayOrderFunctions = [
+    function(obj) {
+      return (types.creature.includes(obj))
+    },
+    function(obj) {
+      return (types.immovable.includes(obj) || types.movable.includes(obj) === true)
+    },
+    function(obj) {
+      return (types.item.includes(obj) === true)
+    },
+    function(obj) {
+      return (types.terrain.includes(obj) === true)
+    }
+  ]
+  for (var f of displayOrderFunctions) {
+    for (var i = 0; i < array.length; i++) {
+      if (f(array[i])) {
+        return array[i]
+      }
     }
   }
-  for (i = 0; i < array.length; i++) {
-    if (types.immovable.includes(array[i]) || types.movable.includes(array[i]) === true) {
-      return array[i]
-    }
-  }
-  for (i = 0; i < array.length; i++) {
-    if (types.item.includes(array[i]) === true) {
-      return array[i]
-    }
-  }
-  for (i = 0; i < array.length; i++) {
-    if (types.terrain.includes(array[i]) === true) {
-      return array[i]
-    }
-  }
+
+  // for (i = 0; i < array.length; i++) {
+  //   if (types.creature.includes(array[i])) {
+  //     return array[i]
+  //   }
+  // }
+  // for (i = 0; i < array.length; i++) {
+  //   if (types.immovable.includes(array[i]) || types.movable.includes(array[i]) === true) {
+  //     return array[i]
+  //   }
+  // }
+  // for (i = 0; i < array.length; i++) {
+  //   if (types.item.includes(array[i]) === true) {
+  //     return array[i]
+  //   }
+  // }
+  // for (i = 0; i < array.length; i++) {
+  //   if (types.terrain.includes(array[i]) === true) {
+  //     return array[i]
+  //   }
+  // }
   return types.empty[0]
 }
 
