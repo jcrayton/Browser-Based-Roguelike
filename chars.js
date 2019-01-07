@@ -22,11 +22,24 @@ function getType (object) {
     // then object is an instance, not a member of the chars variable
     test = object.charObj
   }
-  for (var type of types) {
-    if (type.includes(test)) {
+  // console.log('test', test)
+  for (var type in types) {
+    // console.log('type', type)
+    if (contains(type, test)) {
       return type
     }
   }
+}
+
+// from https://stackoverflow.com/questions/237104/how-do-i-check-if-an-array-includes-an-object-in-javascript?rq=1
+function contains(a, obj) {
+    var i = a.length;
+    while (i--) {
+       if (a[i] === obj) {
+           return true;
+       }
+    }
+    return false;
 }
 
 var types = {

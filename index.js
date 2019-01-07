@@ -12,10 +12,15 @@ var mapVals = [[]]
 
 function init() {
   createGrid(ROWS, COLS)
+
+  console.log('contains fox', types.creature.includes({char: "f", color: "darkorange"}));
+
+  console.log('type of fox char', getType(chars.fox))
+  console.log('type of fox obj', getType(newCreature(creatures.fox)))
+  console.log('type of fox creature', getType(creatures.fox));
+
   populate()
   setCell(playerCoords, chars.player)
-  // var audio = new Audio('http://ericskiff.com/music/Resistor%20Anthems/01%20A%20Night%20Of%20Dizzy%20Spells.mp3')
-  // audio.play();
   displayMap()
   inventory()
   run()
