@@ -8,6 +8,37 @@ function move (origin, coords, d, char) {
       return boardSwap(d)
       // return
     }
+    else {
+      // we need to create a chuck and move the obj to the other end
+      var x = mapPos.x
+      var y = mapPos.y
+      switch (d) {
+        case "u":
+          y--
+          break
+        case "d":
+          y++
+          break
+        case "l":
+          x--
+          break
+        case "r":
+          coords.x
+          coords.y
+          x++
+          break
+      }
+      if (Array.isArray(mapVals[x][y]) === true) {
+        savedGrid = mapVals[x][y]
+
+
+      } else {
+        renderChunk({x:x, y:y})
+      }
+      return coords
+
+
+    }
   }
   // else if (getDisplayItem(coords) == null){
   //   return origin
@@ -66,7 +97,7 @@ function move (origin, coords, d, char) {
     slot.innerHTML = content.char
 
     removeCell(coords, content)
-    moveCell(playerCoords, coords, char)
+    moveCell(origin, coords, char)
     return coords
   }
 }
