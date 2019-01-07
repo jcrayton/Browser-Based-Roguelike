@@ -24,6 +24,15 @@ function getCharObject (object) {
   }
 }
 
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+      if (String(a[i]) == String(obj)) {
+        return true
+      }
+    }
+    return false
+}
+
 var types = {
   immovable: [chars.wall, chars.hole],
   creature: [chars.player, chars.fox, chars.babaYaga, chars.firebird, chars.deer,

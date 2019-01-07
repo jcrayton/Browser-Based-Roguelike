@@ -74,25 +74,25 @@ function getDisplayItem (coords) {
   var array = underlyingGrid[coords.x][coords.y]
   for (i = 0; i < array.length; i++) {
     var charObj = getCharObject(array[i])
-    if (types.creature.includes(charObj)) {
+    if (contains(types.creature, charObj)) {
       return array[i]
     }
   }
   for (i = 0; i < array.length; i++) {
     var charObj = getCharObject(array[i])
-    if (types.immovable.includes(charObj) || types.movable.includes(charObj) === true) {
+    if (contains(types.immovable, charObj) || contains(types.movable, charObj) === true) {
       return array[i]
     }
   }
   for (i = 0; i < array.length; i++) {
     var charObj = getCharObject(array[i])
-    if (types.item.includes(charObj) === true) {
+    if (contains(types.item, charObj) === true) {
       return array[i]
     }
   }
   for (i = 0; i < array.length; i++) {
     var charObj = getCharObject(array[i])
-    if (types.terrain.includes(charObj) === true) {
+    if (contains(types.terrain, charObj) === true) {
       return array[i]
     }
   }
