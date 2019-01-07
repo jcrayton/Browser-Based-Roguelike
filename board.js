@@ -37,7 +37,7 @@ function boardIsFull () {
 }
 
 function isEmpty (coords) {
-  return (getDisplayItem(coords) == '')
+  return (getDisplayItem(coords).char == '')
 }
 
 function setCell (coords, object) {

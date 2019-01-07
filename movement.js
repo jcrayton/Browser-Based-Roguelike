@@ -62,3 +62,20 @@ function move (origin, coords, d, char) {
     return coords
   }
 }
+
+function moveCreatures () {
+  for (var creature of activeCreatures) {
+    if (!creature.friendly) {
+      // TODO make it chase player
+    }
+    else {
+      var leftCoords = getLeftCoords(creature.coords)
+      console.log('left', leftCoords);
+      console.log('is empty', isEmpty(leftCoords));
+      if (isEmpty(leftCoords)) {
+        moveCell(creature.coords, leftCoords, 'l', creature)
+        creature.coords = leftCoords
+      }
+    }
+  }
+}

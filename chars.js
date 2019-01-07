@@ -24,9 +24,9 @@ function getCharObject (object) {
   }
 }
 
-function contains(a, obj) {
-    for (var i = 0; i < a.length; i++) {
-      if (String(a[i]) == String(obj)) {
+function contains(array, obj) {
+    for (var i = 0; i < array.length; i++) {
+      if (String(array[i]) == String(obj)) {
         return true
       }
     }

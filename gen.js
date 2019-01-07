@@ -1,25 +1,27 @@
+function getRandomEmptyCoords () {
+  while (!boardIsFull()) {
+    var coords = {x: getRandomInt(COLS), y: getRandomInt(ROWS)}
+    if (getDisplayItem(coords).char === '') {
+      return coords
+    }
+  }
+}
+
 function objGen (type, x, y, d, l) {
   if (boardIsFull()) {
     return
   }
 
-  // generate wall in random position (if x unspecified)
+  // generate obj in random position (if x unspecified)
   if (x === undefined) {
-    var test = false
-    while (test === false) {
-      var coords = {x: getRandomInt(COLS), y: getRandomInt(ROWS)}
-      if (getDisplayItem(coords).char === "") {
-        setCell(coords, type)
-        test = true
-      }
-    }
+    setCell(getRandomEmptyCoords(), type)
   }
 
   // create straight line of objects (if d and l were specified)
   else if (d !== undefined && l !== undefined) {
     while (l !== 0) {
       var coords = {x: x, y: y}
-      if (getDisplayItem(coords).char === "") {
+      if (getDisplayItem(coords).char === '') {
         setCell(coords, type)
       }
       switch (d) {
@@ -43,7 +45,12 @@ function objGen (type, x, y, d, l) {
   }
 }
 
-function newCreature (creature) {
+// list of creature instances in the current map chunk
+var activeCreatures = []
+
+// instantiates creature, adds it to activeCreatures, and adds it to board
+function creatureGen (creature) {
+  var coords = getRandomEmptyCoords()
   var obj = {
     char: creature.char,
     color: creature.color,
@@ -51,10 +58,11 @@ function newCreature (creature) {
     attack: creature.attack,
     aim: creature.aim,
     friendly: decideBoolean(creature.friendly),
-    freq: creature.freq
+    freq: creature.freq,
+    coords: coords
   }
-  console.log('creature', creature);
-  console.log('obj', obj);
+  activeCreatures.push(obj)
+  setCell(coords, obj)
   return obj
 }
 

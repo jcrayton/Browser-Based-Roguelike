@@ -12,11 +12,6 @@ var mapVals = [[]]
 
 function init() {
   createGrid(ROWS, COLS)
-
-  // console.log('type of fox char', getType(chars.fox))
-  // console.log('type of fox obj', getType(newCreature(creatures.fox)))
-  // console.log('type of fox creature', getType(creatures.fox));
-
   populate()
   setCell(playerCoords, chars.player)
   displayMap()
@@ -51,5 +46,8 @@ function run () {
         playerCoords = move(playerCoords, getBelowCoords(), "d")
         break
     }
+
+    // update the rest of the game (creatures, etc)
+    moveCreatures()
   })
 }
