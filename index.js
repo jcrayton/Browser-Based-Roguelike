@@ -14,6 +14,7 @@ function init() {
   createGrid(ROWS, COLS)
 
   console.log('contains fox', types.creature.includes({char: "f", color: "darkorange"}));
+  console.log('types.creature', types.creature);
 
   console.log('type of fox char', getType(chars.fox))
   console.log('type of fox obj', getType(newCreature(creatures.fox)))

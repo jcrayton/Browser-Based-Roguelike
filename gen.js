@@ -45,8 +45,8 @@ function objGen (type, x, y, d, l) {
 
 function newCreature (creature) {
   var obj = {
-    char: creature.charObj.char,
-    color: creature.charObj.color,
+    char: creature.char,
+    color: creature.color,
     hp: creature.hp,
     attack: creature.attack,
     aim: creature.aim,

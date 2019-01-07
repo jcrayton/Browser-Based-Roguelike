@@ -72,25 +72,28 @@ function renderCellHTML (coords, object) {
 // the idea is that this function would pick a val to display out of the items that are in the cell
 function getDisplayItem (coords) {
   var array = underlyingGrid[coords.x][coords.y]
-  var displayOrderFunctions = [
-    function(type) {
-      return (type == types.creature)
-    },
-    function(type) {
-      return (type == types.immovable || type == types.movable)
-    },
-    function(type) {
-      return (type == types.item)
-    },
-    function(type) {
-      return (type == types.terrain)
+  for (i = 0; i < array.length; i++) {
+    var charObj = getCharObject(array[i])
+    if (types.creature.includes(charObj)) {
+      return array[i]
     }
-  ]
-  for (var f of displayOrderFunctions) {
-    for (var i = 0; i < array.length; i++) {
-      if (f(getType(array[i]))) {
-        return array[i]
-      }
+  }
+  for (i = 0; i < array.length; i++) {
+    var charObj = getCharObject(array[i])
+    if (types.immovable.includes(charObj) || types.movable.includes(charObj) === true) {
+      return array[i]
+    }
+  }
+  for (i = 0; i < array.length; i++) {
+    var charObj = getCharObject(array[i])
+    if (types.item.includes(charObj) === true) {
+      return array[i]
+    }
+  }
+  for (i = 0; i < array.length; i++) {
+    var charObj = getCharObject(array[i])
+    if (types.terrain.includes(charObj) === true) {
+      return array[i]
     }
   }
   return types.empty[0]

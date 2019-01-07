@@ -16,30 +16,12 @@ var chars = {
   empty: {char: '', color: 'magenta'}
 }
 
-function getType (object) {
-  var test = object
-  if (object.charObj !== undefined) {
-    // then object is an instance, not a member of the chars variable
-    test = object.charObj
+// takes an instance (eg a creature) and returns the version found in chars
+function getCharObject (object) {
+  return {
+    char: object.char,
+    color: object.color
   }
-  // console.log('test', test)
-  for (var type in types) {
-    // console.log('type', type)
-    if (contains(type, test)) {
-      return type
-    }
-  }
-}
-
-// from https://stackoverflow.com/questions/237104/how-do-i-check-if-an-array-includes-an-object-in-javascript?rq=1
-function contains(a, obj) {
-    var i = a.length;
-    while (i--) {
-       if (a[i] === obj) {
-           return true;
-       }
-    }
-    return false;
 }
 
 var types = {
@@ -60,7 +42,7 @@ var visibility = {
 
 var creatures = {
   player: {
-    charObj: chars.player,
+    ...chars.player,
     hp: 10,
     attack: 5,
     aim: 0.75,
@@ -68,7 +50,7 @@ var creatures = {
     freq: 0
   },
   fox: {
-    charObj: chars.fox,
+    ...chars.fox,
     hp: 4,
     attack: 3,
     aim: 0.7,
@@ -76,7 +58,7 @@ var creatures = {
     freq: 0.4
   },
   babaYaga: {
-    charObj: chars.babaYaga,
+    ...chars.babaYaga,
     hp: 100,
     attack: 15,
     aim: 0.9,
@@ -84,7 +66,7 @@ var creatures = {
     freq: 0.1
   },
   firebird: {
-    charObj: chars.firebird,
+    ...chars.firebird,
     hp: 20,
     attack: 8,
     aim: 0.5,
@@ -92,7 +74,7 @@ var creatures = {
     freq: 0.05
   },
   deer: {
-    charObj: chars.deer,
+    ...chars.deer,
     hp: 20,
     attack: 2,
     aim: 0.2,
@@ -100,7 +82,7 @@ var creatures = {
     freq: 0.7
   },
   kolobok: {
-    charObj: chars.kolobok,
+    ...chars.kolobok,
     hp: 1,
     attack: 0,
     aim: 0.2,
