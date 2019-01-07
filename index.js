@@ -48,6 +48,8 @@ function run () {
     }
 
     // update the rest of the game (creatures, etc)
-    moveCreatures()
+    if (key == 'ArrowLeft' || key == 'ArrowUp' || key == 'ArrowRight' || key == 'ArrowDown') {
+      moveCreatures()
+    }
   })
 }
