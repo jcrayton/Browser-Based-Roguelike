@@ -11,13 +11,15 @@ function move (origin, coords, d, char) {
   //   return origin
   // }
   var content = getDisplayItem(coords)
+  // console.log(content)
   if (content.char === '' || types.terrain.includes(content)) {
     moveCell(origin, coords, char)
     return coords
   } else if (types.immovable.includes(content) === true) {
     return origin
-  } else if (types.creature.includes(content) === true) {
-    return origin
+  // } else if (types.creature.includes(content) === true) {
+  //   console.log("oops")
+  //   return origin
   } else if (types.movable.includes(content) === true) {
     // need to switch to the target object
     // then get direction and check that it can also move
@@ -53,6 +55,9 @@ function move (origin, coords, d, char) {
     if (itemPos === 10) {
       return origin
     }
+    else if (char != chars.player) {
+      return coords
+    }
     var slot = (document.getElementById('slot' + itemPos))
     itemPos++
     slot.innerHTML = content.char
@@ -61,21 +66,26 @@ function move (origin, coords, d, char) {
     moveCell(playerCoords, coords, char)
     return coords
   }
+  return origin
 }
 
 function moveCreatures () {
   for (var creature of activeCreatures) {
+    console.log(creature.char)
+    console.log(activeCreatures)
     if (!creature.friendly) {
       // TODO make it chase player
+      console.log("this dude's mean", creature.char)
       return
     }
     else {
-      var leftCoords = getLeftCoords(creature.coords)
-      console.log('left', leftCoords);
-      console.log('is empty', isEmpty(leftCoords));
-      if (isEmpty(leftCoords)) {
-        moveCell(creature.coords, leftCoords, creature)
-        creature.coords = leftCoords
+      var newCoords = getRandCoords(creature.coords)
+
+      // console.log('left', leftCoords);
+      // console.log('is empty', isEmpty(leftCoords));
+      if (isEmpty(newCoords)) {
+        moveCell(creature.coords, newCoords, creature)
+        creature.coords = newCoords
       }
     }
   }

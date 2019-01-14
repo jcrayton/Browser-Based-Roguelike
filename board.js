@@ -157,6 +157,25 @@ function getRightCoords (coords) {
   return {x: coords.x + 1, y: coords.y}
 }
 
+function getRandCoords (coords) {
+  x = getRandomInt(5)
+  if (x == 0) {
+    return coords
+  }
+  else if (x == 1) {
+    return getAboveCoords(coords)
+  }
+  else if (x == 2) {
+    return getBelowCoords(coords)
+  }
+  else if (x == 3) {
+    return getLeftCoords(coords)
+  }
+  else if (x == 4) {
+    return getRightCoords(coords)
+  }
+}
+
 function boardSwap (d) {
   // will need to deal with 1) the map and 2) the player
   saveBoard()
