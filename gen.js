@@ -46,7 +46,6 @@ function objGen (type, x, y, d, l) {
 }
 
 // list of creature instances in the current map chunk
-var activeCreatures = []
 
 // instantiates creature, adds it to activeCreatures, and adds it to board
 function creatureGen (creature) {

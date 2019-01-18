@@ -224,6 +224,11 @@ function saveBoard () {
     mapVals[mapPos.x] = []
     mapVals[mapPos.x][mapPos.y] = underlyingGrid
   }
+  // now to deal with the creatures
+  if (Array.isArray(savedGridOfCreatures[mapPos.x]) === false) {
+    savedGridOfCreatures[mapPos.x] = []
+  }
+  savedGridOfCreatures[mapPos.x][mapPos.y] = activeCreatures
 }
 
 function clearBoard () {
@@ -234,6 +239,7 @@ function clearBoard () {
       cell.innerHTML = ''
     }
   }
+  activeCreatures = []
 }
 
 // TODO generalize so it takes in a grid and start coords
@@ -244,4 +250,6 @@ function refillBoard () {
       displayCell({x: r, y: c})
     }
   }
+
+  activeCreatures = savedGridOfCreatures[mapPos.x][mapPos.y]
 }

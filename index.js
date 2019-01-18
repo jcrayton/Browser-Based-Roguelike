@@ -3,11 +3,13 @@ var ROWS = 20
 var playerCoords = {x: COLS / 2, y: ROWS / 2}
 var grid
 var underlyingGrid = []
+var savedGridOfCreatures = [[]]
 var bag
 var map
 var itemPos = 0
 var mapPos = {x:0, y:0}
 var mapVals = [[]]
+var activeCreatures = []
 
 
 function init() {

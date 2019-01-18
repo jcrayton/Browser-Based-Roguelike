@@ -71,8 +71,8 @@ function move (origin, coords, d, char) {
 
 function moveCreatures () {
   for (var creature of activeCreatures) {
-    console.log(creature.char)
-    console.log(activeCreatures)
+    // console.log(creature.char)
+    // console.log(activeCreatures)
     if (!creature.friendly) {
       // TODO make it chase player
       console.log("this dude's mean", creature.char)
