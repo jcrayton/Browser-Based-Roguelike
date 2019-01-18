@@ -213,6 +213,7 @@ function boardSwap (d) {
   }
   edgeCorrection()
   setCell(playerCoords, chars.player)
+  displayMap()
   return playerCoords
 }
 

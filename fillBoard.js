@@ -46,7 +46,7 @@ function edgeCorrection () {
   var savedGrid
 
   if (typeof (mapVals[x][y - 1]) !== 'undefined') {
-    console.log("1")
+    // console.log("1")
     savedGrid = mapVals[x][y - 1]
     for (var c = 0; c < COLS; ++c) {
       underlyingGrid[c][0] = savedGrid[c][ROWS - 1]
@@ -55,7 +55,7 @@ function edgeCorrection () {
     }
   }
   if (typeof (mapVals[x][y + 1]) !== 'undefined') {
-    console.log("1")
+    // console.log("1")
     savedGrid = mapVals[x][y + 1]
     for (var c = 0; c < COLS; ++c) {
       underlyingGrid[c][ROWS - 1] = savedGrid[c][0]
@@ -66,7 +66,7 @@ function edgeCorrection () {
   }
   if (Array.isArray(mapVals[mapPos.x - 1]) === true) {
     if (typeof (mapVals[x - 1][y]) !== 'undefined') {
-      console.log("1")
+      // console.log("1")
       savedGrid = mapVals[x - 1][y]
       for (var r = 0; r < ROWS; ++r) {
         underlyingGrid[0][r] = savedGrid[COLS - 1][r]
@@ -76,7 +76,7 @@ function edgeCorrection () {
   }
   if (Array.isArray(mapVals[mapPos.x + 1]) === true) {
     if (typeof (mapVals[x + 1][y]) !== 'undefined') {
-      console.log("1")
+      // console.log("1")
       savedGrid = mapVals[mapPos.x + 1][mapPos.y]
       for (var r = 0; r < ROWS; ++r) {
         underlyingGrid[COLS - 1][r] = savedGrid[0][r]

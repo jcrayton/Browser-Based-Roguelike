@@ -75,7 +75,7 @@ function moveCreatures () {
     // console.log(activeCreatures)
     if (!creature.friendly) {
       // TODO make it chase player
-      console.log("this dude's mean", creature.char)
+      // console.log("this dude's mean", creature.char)
       return
     }
     else {
